@@ -4,6 +4,23 @@ import InputField from "../components/InputField";
 import { Link } from "react-router-dom";
 
 export default function Signup() {
+  const handleSubmit= async (values) => {
+    try{
+      const response = await fetch("http://localhost:8080/api/auth/register",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      });
+      const data = await response.json();
+      alert(JSON.stringify(data, null, 2));
+    }
+    catch (error) {
+    console.error(error);
+  }
+    
+  };
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow w-full max-w-md">
@@ -17,7 +34,7 @@ export default function Signup() {
             confirmPassword: "",
           }}
           validationSchema={signupSchema}
-          onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
+          onSubmit={handleSubmit}
         >
           <Form>
             <InputField label="Name" name="name"  placeholder={"Enter name"}/>
@@ -27,8 +44,7 @@ export default function Signup() {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded mt-2"
-            >
+              className="w-full bg-blue-600 text-white py-2 rounded mt-2">
               Sign Up
             </button>
           </Form>
@@ -43,4 +59,5 @@ export default function Signup() {
       </div>
     </div>
   );
+  
 }
