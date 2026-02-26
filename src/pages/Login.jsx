@@ -4,6 +4,24 @@ import InputField from "../components/InputField";
 import { Link } from "react-router-dom";
 
 export default function Login() {
+  const handleSubmit= async (values) => {
+    try{
+      const response = await fetch("http://localhost:8080/api/auth/login",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      });
+      const data = await response.json();
+     
+      alert(JSON.stringify(data, null, 2));
+    }
+    catch (error) {
+    console.error(error);
+  }
+    
+  };
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow w-full max-w-md">
@@ -12,7 +30,7 @@ export default function Login() {
         <Formik
           initialValues={{ email: "", password: "" }}
           validationSchema={loginSchema}
-          onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
+          onSubmit={handleSubmit}
         >
           <Form>
             <InputField
