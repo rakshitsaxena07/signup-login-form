@@ -1,22 +1,32 @@
-import { Formik, Form } from 'formik';
-import { loginSchema } from '../utils/ValidationSchemas';
-import InputField from '../components/InputField';
+import { Formik, Form } from "formik";
+import { loginSchema } from "../utils/ValidationSchemas";
+import InputField from "../components/InputField";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow w-full max-w-md">
-
         <h2 className="text-2xl font-bold mb-6">Login</h2>
 
         <Formik
-          initialValues={{ email: '', password: '' }}
+          initialValues={{ email: "", password: "" }}
           validationSchema={loginSchema}
-          onSubmit={values => alert(JSON.stringify(values, null, 2))}
+          onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
         >
           <Form>
-            <InputField label="Email"    name="email"    type="email" />
-            <InputField label="Password" name="password" type="password" />
+            <InputField
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="Enter mail id"
+            />
+            <InputField
+              label="Password"
+              name="password"
+              type="password"
+              placeholder="Enter password"
+            />
 
             <button
               type="submit"
@@ -28,10 +38,11 @@ export default function Login() {
         </Formik>
 
         <p className="text-sm text-center mt-4">
-          Don't have an account?{' '}
-          <a href="/signup" className="text-blue-600">Sign Up</a>
+          Don't have an account?{" "}
+          <Link to="/signup" className="text-blue-600">
+            Sign Up
+          </Link>
         </p>
-
       </div>
     </div>
   );
