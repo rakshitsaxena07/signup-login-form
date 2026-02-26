@@ -14,7 +14,7 @@ export default function Login() {
         body: JSON.stringify(values)
       });
       const data = await response.json();
-     
+      localStorage.setItem("token", data.data.token);
       alert(JSON.stringify(data, null, 2));
     }
     catch (error) {
