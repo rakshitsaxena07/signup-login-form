@@ -1,12 +1,16 @@
 import { Formik, Form } from "formik";
 import { loginSchema } from "../utils/ValidationSchemas";
 import InputField from "../components/InputField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [serverError, setServerError] = useState('');
   const handleSubmit= async (values) => {
     try{
-      const response = await fetch("http://localhost:8080/api/auth/login",{
+         setServerError('');
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`,{
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -14,11 +18,12 @@ export default function Login() {
         body: JSON.stringify(values)
       });
       const data = await response.json();
+      if(!response.ok) {throw new Error(data.message || 'Invalid email or password');}
       localStorage.setItem("token", data.data.token);
-      alert(JSON.stringify(data, null, 2));
+      navigate('/dashboard'); 
     }
     catch (error) {
-    console.error(error);
+    setServerError(error.message); 
   }
     
   };
@@ -26,6 +31,10 @@ export default function Login() {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6">Login</h2>
+        {serverError && (<p className="text-red-500 text-sm bg-red-50 border border-red-200 rounded px-3 py-2 mb-4">
+            {serverError}
+          </p>
+        )}
 
         <Formik
           initialValues={{ email: "", password: "" }}
