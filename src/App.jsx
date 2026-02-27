@@ -3,7 +3,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/login";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 export default function App() {
   return (
