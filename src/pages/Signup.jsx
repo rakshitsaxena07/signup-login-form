@@ -3,10 +3,11 @@ import { signupSchema } from "../utils/ValidationSchemas";
 import InputField from "../components/InputField";
 import { Link } from "react-router-dom";
 
+
 export default function Signup() {
   const handleSubmit= async (values) => {
     try{
-      const response = await fetch("http://localhost:8080/api/auth/register",{
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/signup`,{
         method: "POST",
         headers: {
           "Content-Type": "application/json"
