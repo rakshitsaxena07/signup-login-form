@@ -8,7 +8,7 @@ export default function Dashboard() {
   const [success, setSuccess] = useState<string>("");
   const navigate= useNavigate();
 
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => { 
     e.preventDefault(); 
     setError("");
     setSuccess("");
@@ -41,7 +41,7 @@ export default function Dashboard() {
       setTitle("");
       setDescription("");
     } catch (err) {
-      setError("Something went wrong. Try again.");
+      setError("Something went wrong");
     }
   };
 
@@ -53,10 +53,9 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-lg mx-auto">
-        {/* header */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold">Create Task</h2>
-          <button onClick={handleLogout} className="text-sm text-red-500">
+          <button onClick={handleLogout} className="text-sm text-red-500 hover:underline">
             Logout
           </button>
         </div>
