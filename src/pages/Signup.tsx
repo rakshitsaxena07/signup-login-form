@@ -44,7 +44,7 @@ export default function Signup() {
         >
           <Form>
             <InputField label="Name" name="name"  placeholder={"Enter name"}/>
-            <InputField label="Email" name="email" type="email" placeholder={"Enter mail id"} />
+            <InputField label="Email" name="email" placeholder={"Enter email"} />
             <InputField label="Password" name="password" type="password" placeholder={"Enter password"}/>
             <InputField label="Confirm Password" name="confirmPassword" type="password" placeholder={"Confirm password"}/>
 

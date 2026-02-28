@@ -52,8 +52,7 @@ export default function Login() {
             <InputField
               label="Email"
               name="email"
-              type="email"
-              placeholder="Enter mail id"
+              placeholder="Enter email"
             />
             <InputField
               label="Password"
